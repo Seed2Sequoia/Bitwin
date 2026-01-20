@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BitTrust - Reputation-Based Lending on Stacks</title>
+    <meta name="description" content="Decentralized peer-to-peer lending platform leveraging Bitcoin security through Stacks blockchain with on-chain reputation scoring.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <circle cx="16" cy="16" r="14" stroke="url(#gradient)" stroke-width="2"/>
+                        <path d="M16 8V24M12 12L16 8L20 12M12 20L16 24L20 20" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32">
+                                <stop offset="0%" stop-color="#6366f1"/>
+                                <stop offset="100%" stop-color="#a855f7"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>BitTrust</span>
+                </div>
+                <nav class="nav">
+                    <button class="nav-btn active" data-view="dashboard">Dashboard</button>
+                    <button class="nav-btn" data-view="lend">Lend</button>
+                    <button class="nav-btn" data-view="borrow">Borrow</button>
+                    <button class="nav-btn" data-view="reputation">Reputation</button>
+                </nav>
+                <button id="connectWallet" class="btn btn-primary">Connect Wallet</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Dashboard View -->
+            <div id="dashboardView" class="view active">
+                <div class="hero">
+                    <h1 class="hero-title">Reputation-Based Lending on Bitcoin</h1>
+                    <p class="hero-subtitle">Build on-chain credit, access flexible loans, and earn yield through peer-to-peer lending secured by Stacks.</p>
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalLoans">0</div>
+                            <div class="stat-label">Total Loans</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalVolume">0 STX</div>
+                            <div class="stat-label">Total Volume</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="avgReputation">500</div>
+                            <div class="stat-label">Avg Reputation</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Stats -->
+                <div class="section" id="userStatsSection" style="display: none;">
+                    <h2 class="section-title">Your Activity</h2>
+                    <div class="stats-grid">
+                        <div class="glass-card">
+                            <div class="card-header">
+                                <h3>Borrowing</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="stat-row">
+                                    <span>Total Borrowed:</span>
+                                    <span id="userBorrowed">0 STX</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Active Loans:</span>
+                                    <span id="userActiveBorrowed">0</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Total Repaid:</span>
+                                    <span id="userRepaid">0 STX</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass-card">
+                            <div class="card-header">
+                                <h3>Lending</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="stat-row">
+                                    <span>Total Lent:</span>
+                                    <span id="userLent">0 STX</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Active Loans:</span>
+                                    <span id="userActiveLent">0</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Defaults:</span>
+                                    <span id="userDefaults">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lend View -->
+            <div id="lendView" class="view">
+                <h2 class="section-title">Create a Loan Offer</h2>
+                <div class="glass-card">
+                    <form id="lendForm" class="form">
+                        <div class="form-group">
+                            <label for="lendBorrower">Borrower Address</label>
+                            <input type="text" id="lendBorrower" placeholder="SP..." required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="lendAmount">Loan Amount (STX)</label>
+                                <input type="number" id="lendAmount" placeholder="100" step="0.000001" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lendInterest">Interest Rate (%)</label>
+                                <input type="number" id="lendInterest" placeholder="10" step="0.01" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="lendDuration">Duration (blocks)</label>
+                                <input type="number" id="lendDuration" placeholder="1000" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lendCollateral">Min Collateral (%)</label>
+                                <input type="number" id="lendCollateral" placeholder="150" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-large">Create Loan</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Borrow View -->
+            <div id="borrowView" class="view">
+                <h2 class="section-title">Active Loans</h2>
+                <div id="activeLoans" class="loans-grid">
+                    <div class="empty-state">
+                        <p>No active loans. Connect your wallet to view your loans.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reputation View -->
+            <div id="reputationView" class="view">
+                <h2 class="section-title">Your Reputation</h2>
+                <div class="glass-card">
+                    <div class="reputation-display">
+                        <div class="reputation-score">
+                            <div class="score-circle">
+                                <svg viewBox="0 0 200 200">
+                                    <circle cx="100" cy="100" r="90" fill="none" stroke="#1f2937" stroke-width="12"/>
+                                    <circle id="reputationCircle" cx="100" cy="100" r="90" fill="none" stroke="url(#scoreGradient)" stroke-width="12" stroke-linecap="round" transform="rotate(-90 100 100)" stroke-dasharray="565.48" stroke-dashoffset="282.74"/>
+                                    <defs>
+                                        <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#6366f1"/>
+                                            <stop offset="100%" stop-color="#a855f7"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div class="score-value" id="reputationScore">500</div>
+                            </div>
+                            <div class="score-label">Credit Score</div>
+                        </div>
+                        <div class="reputation-details">
+                            <h3>Reputation Breakdown</h3>
+                            <div class="detail-row">
+                                <span>Total Loans:</span>
+                                <span id="repTotalLoans">0</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Successful Repayments:</span>
+                                <span id="repSuccessful">0</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Defaults:</span>
+                                <span id="repDefaults">0</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Total Volume:</span>
+                                <span id="repVolume">0 STX</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Borrowing Limit:</span>
+                                <span id="repLimit">0 STX</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Recommended Rate:</span>
+                                <span id="repRate">15%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="initReputation" class="btn btn-secondary" style="display: none;">Initialize Reputation</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/@stacks/connect@7.8.2/dist/connect.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

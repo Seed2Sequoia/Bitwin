@@ -5,9 +5,13 @@ authors = []
 telemetry = false
 cache_dir = "./.cache"
 
-# [contracts.counter]
-# path = "contracts/counter.clar"
-# epoch = "latest"
+[contracts.bittrust-core]
+path = "contracts/bittrust-core.clar"
+epoch = "latest"
+
+[contracts.reputation-system]
+path = "contracts/reputation-system.clar"
+epoch = "latest"
 
 [repl.analysis]
 passes = ["check_checker"]

@@ -1,15 +1,121 @@
+# ============================================
+# CRITICAL: Private Keys & Secrets
+# ============================================
+# Environment files with private keys/mnemonics
+.env
+.env.local
+.env*.local
+.env.production
+.env.development
+*.env
 
+# Deployment configurations with mnemonics
 **/settings/Mainnet.toml
 **/settings/Testnet.toml
+settings/Mainnet.toml
+settings/Testnet.toml
+
+# Private key files
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_dsa
+*.secret
+
+# Wallet files
+wallet.json
+keystore/
+wallets/
+
+# ============================================
+# Clarinet & Stacks
+# ============================================
+.cache/
 .cache/**
 history.txt
+costs-reports.json
+deployments/*.yaml
+deployments/*.yml
 
-logs
+# ============================================
+# Node.js & Dependencies
+# ============================================
+node_modules/
+node_modules/**
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnpm-store/
+
+# ============================================
+# Next.js
+# ============================================
+.next/
+out/
+build/
+dist/
+.vercel
+.turbo
+
+# ============================================
+# Logs & Debug
+# ============================================
+logs/
 *.log
 npm-debug.log*
-coverage
+coverage/
 *.info
-costs-reports.json
-node_modules
-.env.local
-.env    
+.DS_Store
+*.swp
+*.swo
+*~
+
+# ============================================
+# IDE & Editor
+# ============================================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.settings/
+
+# ============================================
+# OS Files
+# ============================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ============================================
+# Temporary Files
+# ============================================
+*.tmp
+*.temp
+*.bak
+*.backup
+*~
+.#*
+
+# ============================================
+# Testing
+# ============================================
+coverage/
+.nyc_output/
+test-results/
+playwright-report/
+
+# ============================================
+# Build Artifacts
+# ============================================
+*.tsbuildinfo
+.eslintcache

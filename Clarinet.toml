@@ -13,6 +13,26 @@ epoch = "latest"
 path = "contracts/reputation-system.clar"
 epoch = "latest"
 
+[contracts.governance]
+path = "contracts/governance.clar"
+epoch = "latest"
+
+[contracts.flash-loans]
+path = "contracts/flash-loans.clar"
+epoch = "latest"
+
+[contracts.liquidity-pool]
+path = "contracts/liquidity-pool.clar"
+epoch = "latest"
+
+[contracts.nft-collateral]
+path = "contracts/nft-collateral.clar"
+epoch = "latest"
+
+[contracts.credit-delegation]
+path = "contracts/credit-delegation.clar"
+epoch = "latest"
+
 [repl.analysis]
 passes = ["check_checker"]
 check_checker = { trusted_sender = false, trusted_caller = false, callee_filter = false }

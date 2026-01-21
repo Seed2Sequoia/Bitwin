@@ -1,65 +1,99 @@
-import Image from "next/image";
+import Link from 'next/link';
+import { Zap, Droplets, Image as ImageIcon, Users, ArrowRight } from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="space-y-8">
+      {/* Header */}
+      <div className="bg-linear-to-r from-blue-900/40 to-purple-900/40 border border-blue-800/50 rounded-2xl p-8 backdrop-blur-sm">
+        <h1 className="text-4xl font-bold mb-4 bg-linear-to-r from-blue-400 via-purple-400 to-pink-400 text-transparent bg-clip-text">
+          Welcome to the Future of DeFi
+        </h1>
+        <p className="text-xl text-slate-300 max-w-2xl mb-6">
+          BitTrust is the first reputation-based lending platform on Stacks offering flash loans,
+          NFT collateral, and social credit delegation.
+        </p>
+        <div className="flex gap-4">
+          <Link
+            href="/pools"
+            className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-lg font-bold transition-all hover:scale-105"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Start Earning Yield
+          </Link>
+          <Link
+            href="/flash-loans"
+            className="bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-lg font-bold border border-slate-700 transition-all hover:scale-105"
           >
-            Documentation
-          </a>
+            Explore Flash Loans
+          </Link>
         </div>
-      </main>
+      </div>
+
+      {/* Feature Grid */}
+      <h2 className="text-2xl font-bold pt-4">Platform Features</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <Link href="/flash-loans" className="group">
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 h-full transition-all group-hover:border-blue-500/50 group-hover:bg-slate-900/80">
+            <div className="w-12 h-12 bg-yellow-500/10 rounded-lg flex items-center justify-center mb-4 text-yellow-500">
+              <Zap className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-bold mb-2 group-hover:text-blue-400 transition-colors">Flash Loans</h3>
+            <p className="text-slate-400 text-sm mb-4">
+              Borrow any amount without collateral, repay in the same block.
+            </p>
+            <div className="flex items-center text-blue-500 text-sm font-bold">
+              Try It <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+        </Link>
+
+        <Link href="/pools" className="group">
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 h-full transition-all group-hover:border-blue-500/50 group-hover:bg-slate-900/80">
+            <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mb-4 text-blue-500">
+              <Droplets className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-bold mb-2 group-hover:text-blue-400 transition-colors">Liquidity Pools</h3>
+            <p className="text-slate-400 text-sm mb-4">
+              Provide liquidity to earn yield or borrow against your assets.
+            </p>
+            <div className="flex items-center text-blue-500 text-sm font-bold">
+              View Pools <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+        </Link>
+
+        <Link href="/nft" className="group">
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 h-full transition-all group-hover:border-blue-500/50 group-hover:bg-slate-900/80">
+            <div className="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-4 text-purple-500">
+              <ImageIcon className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-bold mb-2 group-hover:text-blue-400 transition-colors">NFT Collateral</h3>
+            <p className="text-slate-400 text-sm mb-4">
+              Unlock liquidity from your blue-chip Stacks NFTs.
+            </p>
+            <div className="flex items-center text-blue-500 text-sm font-bold">
+              Verify NFT <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+        </Link>
+
+        <Link href="/delegation" className="group">
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 h-full transition-all group-hover:border-blue-500/50 group-hover:bg-slate-900/80">
+            <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center mb-4 text-green-500">
+              <Users className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-bold mb-2 group-hover:text-blue-400 transition-colors">Credit Delegation</h3>
+            <p className="text-slate-400 text-sm mb-4">
+              Vouch for users you trust and earn a fee on their repayment.
+            </p>
+            <div className="flex items-center text-blue-500 text-sm font-bold">
+              Delegate <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+        </Link>
+
+      </div>
     </div>
   );
 }
